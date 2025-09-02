@@ -71,6 +71,11 @@ public class JframeNuevo extends javax.swing.JFrame {
         jMenuCliente.add(ItemAgregarCliente);
 
         ItemBuscarCliente.setText("BuscarCliente");
+        ItemBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemBuscarClienteActionPerformed(evt);
+            }
+        });
         jMenuCliente.add(ItemBuscarCliente);
 
         ItemBorrarCliente.setText("BorrarCliente");
@@ -131,6 +136,13 @@ public class JframeNuevo extends javax.swing.JFrame {
         jDEscritorio.add(agregar);
         
     }//GEN-LAST:event_ItemAgregarCiudadActionPerformed
+
+    private void ItemBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemBuscarClienteActionPerformed
+        BuscarCliente buscar = new BuscarCliente();
+        buscar.setSize(450, 470);
+        buscar.setVisible(true);
+        jDEscritorio.add(buscar);
+    }//GEN-LAST:event_ItemBuscarClienteActionPerformed
 
     /**
      * @param args the command line arguments

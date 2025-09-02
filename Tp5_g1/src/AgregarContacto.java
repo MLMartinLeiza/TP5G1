@@ -67,6 +67,11 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
         jLabel6.setText("Domicilio:");
 
         jCBoxCiudad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jCBoxCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxCiudadActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -246,6 +251,10 @@ public class AgregarContacto extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_jBGuardarActionPerformed
+
+    private void jCBoxCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxCiudadActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxCiudadActionPerformed
     private void cargarComboCiudades(){
         jCBoxCiudad.removeAllItems();
         for (String ciudad : JframeNuevo.ciudades){
