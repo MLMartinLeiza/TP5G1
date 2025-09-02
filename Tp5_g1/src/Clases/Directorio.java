@@ -44,6 +44,7 @@ public class Directorio {
     
     // en base a un apellido nos devuelve un Set<Long> con los números de teléfono asociados a dicho apellido.
     public void buscarTelefono(){
+        
     
     }
     

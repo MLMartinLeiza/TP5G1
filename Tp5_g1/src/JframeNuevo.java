@@ -41,6 +41,7 @@ public class JframeNuevo extends javax.swing.JFrame {
         ItemBuscarCliente = new javax.swing.JMenuItem();
         ItemBorrarCliente = new javax.swing.JMenuItem();
         jMenuDirectorio = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
         jMenuCiudad = new javax.swing.JMenu();
         ItemAgregarCiudad = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -57,7 +58,7 @@ public class JframeNuevo extends javax.swing.JFrame {
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 654, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
 
         jMenuCliente.setText("Cliente");
@@ -84,6 +85,15 @@ public class JframeNuevo extends javax.swing.JFrame {
         jMenuBar1.add(jMenuCliente);
 
         jMenuDirectorio.setText("Directorio");
+
+        jMenuItem2.setText("Buscar clientes por ciudad");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        jMenuDirectorio.add(jMenuItem2);
+
         jMenuBar1.add(jMenuDirectorio);
 
         jMenuCiudad.setText("Ciudad");
@@ -115,6 +125,7 @@ public class JframeNuevo extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void ItemAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemAgregarClienteActionPerformed
@@ -143,6 +154,14 @@ public class JframeNuevo extends javax.swing.JFrame {
         buscar.setVisible(true);
         jDEscritorio.add(buscar);
     }//GEN-LAST:event_ItemBuscarClienteActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        BuscarClientesCiudad ciudad = new BuscarClientesCiudad();
+        ciudad.setSize(650, 350);
+        ciudad.setVisible(true);
+        jDEscritorio.add(ciudad);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -191,5 +210,6 @@ public class JframeNuevo extends javax.swing.JFrame {
     private javax.swing.JMenu jMenuCliente;
     private javax.swing.JMenu jMenuDirectorio;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     // End of variables declaration//GEN-END:variables
 }
