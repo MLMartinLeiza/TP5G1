@@ -1,3 +1,7 @@
+
+import java.util.HashSet;
+import java.util.Set;
+import Clases.Directorio;
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -13,6 +17,9 @@ public class JframeNuevo extends javax.swing.JFrame {
     /**
      * Creates new form JframeNuevo
      */
+    
+    public static Set<String> ciudades = new HashSet<>();
+    
     public JframeNuevo() {
         initComponents();
     }
@@ -27,49 +34,64 @@ public class JframeNuevo extends javax.swing.JFrame {
     private void initComponents() {
 
         jMenuItem1 = new javax.swing.JMenuItem();
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jDEscritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMenuCliente = new javax.swing.JMenu();
+        ItemAgregarCliente = new javax.swing.JMenuItem();
+        ItemBuscarCliente = new javax.swing.JMenuItem();
+        ItemBorrarCliente = new javax.swing.JMenuItem();
+        jMenuDirectorio = new javax.swing.JMenu();
+        jMenuCiudad = new javax.swing.JMenu();
+        ItemAgregarCiudad = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jDEscritorioLayout = new javax.swing.GroupLayout(jDEscritorio);
+        jDEscritorio.setLayout(jDEscritorioLayout);
+        jDEscritorioLayout.setHorizontalGroup(
+            jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 628, Short.MAX_VALUE)
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 439, Short.MAX_VALUE)
+        jDEscritorioLayout.setVerticalGroup(
+            jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 654, Short.MAX_VALUE)
         );
 
-        jMenu1.setText("Cliente");
+        jMenuCliente.setText("Cliente");
 
-        jMenuItem2.setText("AgregarCliente");
-        jMenu1.add(jMenuItem2);
+        ItemAgregarCliente.setText("AgregarCliente");
+        ItemAgregarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemAgregarClienteActionPerformed(evt);
+            }
+        });
+        jMenuCliente.add(ItemAgregarCliente);
 
-        jMenuItem3.setText("BuscarCliente");
-        jMenu1.add(jMenuItem3);
+        ItemBuscarCliente.setText("BuscarCliente");
+        jMenuCliente.add(ItemBuscarCliente);
 
-        jMenuItem4.setText("BorrarCliente");
-        jMenu1.add(jMenuItem4);
+        ItemBorrarCliente.setText("BorrarCliente");
+        jMenuCliente.add(ItemBorrarCliente);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMenuCliente);
 
-        jMenu2.setText("Directorio");
-        jMenuBar1.add(jMenu2);
+        jMenuDirectorio.setText("Directorio");
+        jMenuBar1.add(jMenuDirectorio);
 
-        jMenu3.setText("Ciudad");
-        jMenuBar1.add(jMenu3);
+        jMenuCiudad.setText("Ciudad");
+
+        ItemAgregarCiudad.setText("Agregar Ciudad");
+        ItemAgregarCiudad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemAgregarCiudadActionPerformed(evt);
+            }
+        });
+        jMenuCiudad.add(ItemAgregarCiudad);
+
+        jMenuBar1.add(jMenuCiudad);
 
         jMenu4.setText("Salir");
         jMenuBar1.add(jMenu4);
@@ -80,15 +102,35 @@ public class JframeNuevo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDEscritorio)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jDEscritorio)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void ItemAgregarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemAgregarClienteActionPerformed
+        // TODO add your handling code here:
+        
+        AgregarContacto agregar = new AgregarContacto();
+        agregar.setSize(450, 470);
+        agregar.setVisible(true);
+        jDEscritorio.add(agregar);
+        
+        
+    }//GEN-LAST:event_ItemAgregarClienteActionPerformed
+
+    private void ItemAgregarCiudadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemAgregarCiudadActionPerformed
+        
+        AgregarCiudad agregar = new AgregarCiudad();
+        agregar.setSize(450,350);
+        agregar.setVisible(true);
+        jDEscritorio.add(agregar);
+        
+    }//GEN-LAST:event_ItemAgregarCiudadActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,15 +168,16 @@ public class JframeNuevo extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JDesktopPane jDesktopPane1;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem ItemAgregarCiudad;
+    private javax.swing.JMenuItem ItemAgregarCliente;
+    private javax.swing.JMenuItem ItemBorrarCliente;
+    private javax.swing.JMenuItem ItemBuscarCliente;
+    private javax.swing.JDesktopPane jDEscritorio;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenu jMenuCiudad;
+    private javax.swing.JMenu jMenuCliente;
+    private javax.swing.JMenu jMenuDirectorio;
     private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 }

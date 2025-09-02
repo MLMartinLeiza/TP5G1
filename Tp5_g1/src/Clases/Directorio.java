@@ -6,6 +6,7 @@
 package Clases;
 
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  *
@@ -14,10 +15,24 @@ import java.util.TreeMap;
 public class Directorio {
      private long telefono;
     
-    TreeMap<Long, Contactos> informacion = new TreeMap<>();
+    private static TreeMap<Long, Contactos> informacion = new TreeMap<>();
     
     //permite registrar un nuevo contacto con su respectivo nro. de teléfono. Siendo el nro. del teléfono la clave del mismo.
-    public void agregarContacto(){
+    public static boolean agregarContacto(long telefono, Contactos cont){
+        //verificamos q telefono sea un numero valido y el contacto no sea null
+        if (telefono <=0 || cont == null){
+            return false;
+        }
+        
+        //verificamos q el telefono no este duplicado
+        
+        if(informacion.containsKey(telefono)){
+            return false;
+        }
+        
+        informacion.put(telefono, cont);
+        
+        return true;
         
         
     }
