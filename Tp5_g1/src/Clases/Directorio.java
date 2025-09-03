@@ -5,8 +5,10 @@
  */
 package Clases;
 
+import static java.lang.reflect.Array.set;
 import java.util.TreeMap;
 import java.util.TreeSet;
+import java.util.*;
 
 /**
  *
@@ -37,9 +39,14 @@ public class Directorio {
         
     }
     
+    public static Set <Long> todosLosTelefonos (){
+        return new TreeSet<>(informacion.keySet());
+    }
     //en base al nro. de teléfono retorna el Contacto asociado al mismo.
-    public void buscarContacto(){
-    
+    public Contactos buscarContacto(long telefono){
+           //nos devuelve el contacto con respecto al telefono asociado
+        return informacion.get(telefono);
+        
     }
     
     // en base a un apellido nos devuelve un Set<Long> con los números de teléfono asociados a dicho apellido.
