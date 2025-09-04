@@ -54,11 +54,11 @@ public class JframeNuevo extends javax.swing.JFrame {
         jDEscritorio.setLayout(jDEscritorioLayout);
         jDEscritorioLayout.setHorizontalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 628, Short.MAX_VALUE)
+            .addGap(0, 999, Short.MAX_VALUE)
         );
         jDEscritorioLayout.setVerticalGroup(
             jDEscritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 412, Short.MAX_VALUE)
+            .addGap(0, 532, Short.MAX_VALUE)
         );
 
         jMenuCliente.setText("Cliente");
@@ -80,6 +80,11 @@ public class JframeNuevo extends javax.swing.JFrame {
         jMenuCliente.add(ItemBuscarCliente);
 
         ItemBorrarCliente.setText("BorrarCliente");
+        ItemBorrarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemBorrarClienteActionPerformed(evt);
+            }
+        });
         jMenuCliente.add(ItemBorrarCliente);
 
         jMenuBar1.add(jMenuCliente);
@@ -162,6 +167,14 @@ public class JframeNuevo extends javax.swing.JFrame {
         ciudad.setVisible(true);
         jDEscritorio.add(ciudad);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void ItemBorrarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemBorrarClienteActionPerformed
+        // TODO add your handling code here:
+              BorrarCliente borrarCliente = new BorrarCliente();
+        borrarCliente.setSize(800, 385);
+        borrarCliente.setVisible(true);
+        jDEscritorio.add(borrarCliente);
+    }//GEN-LAST:event_ItemBorrarClienteActionPerformed
 
     /**
      * @param args the command line arguments
