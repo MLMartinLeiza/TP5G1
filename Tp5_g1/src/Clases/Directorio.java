@@ -60,7 +60,21 @@ public class Directorio {
     
     //en base al número de teléfono elimina el contacto del directorio.   
     }
-    public void borrarContacto(){
     
+    public static Set<Integer> TodosLosDni(){
+        Set<Integer> listaDni = new TreeSet<>();
+        
+        for (Contactos dni : informacion.values()) {
+            listaDni.add(dni.getDni());
+        }
+        return listaDni;
+    }
+    
+    
+    
+    public TreeMap<Long, Contactos> borrarContacto(int dni){
+       informacion.containsValue(dni);
+        
+       return informacion;
     }
 }
