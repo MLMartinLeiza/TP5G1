@@ -43,14 +43,14 @@ public class Directorio {
     }
 
     //en base al nro. de teléfono retorna el Contacto asociado al mismo.
-    public Contactos buscarContacto(long telefono) {
+    public static Contactos buscarContacto(long telefono) {
         //nos devuelve el contacto con respecto al telefono asociado
         return informacion.get(telefono);
 
     }
 
     // en base a un apellido nos devuelve un Set<Long> con los números de teléfono asociados a dicho apellido.
-    public Set<Long> buscarTelefono(String apellido) { 
+    public static Set<Long> buscarTelefonoPorApellido(String apellido) { 
         TreeSet<Long> numeroEncontrado = new TreeSet<>(); //Creo un TreeSet para almacenar coincidencias
         for (Map.Entry<Long, Contactos> c : informacion.entrySet()) { //Recorro el TreeMap información
             if (c.getValue().getApellido().equalsIgnoreCase(apellido)) { //Comparo lo que recibo por parámetro

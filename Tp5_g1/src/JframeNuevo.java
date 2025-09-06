@@ -43,9 +43,10 @@ public class JframeNuevo extends javax.swing.JFrame {
         ItemBorrarCliente = new javax.swing.JMenuItem();
         jMenuDirectorio = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuBuscarTeléfonoPorApellido = new javax.swing.JMenuItem();
         jMenuCiudad = new javax.swing.JMenu();
         ItemAgregarCiudad = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
+        jMenuSalir = new javax.swing.JMenu();
 
         jMenuItem1.setText("jMenuItem1");
 
@@ -100,6 +101,14 @@ public class JframeNuevo extends javax.swing.JFrame {
         });
         jMenuDirectorio.add(jMenuItem2);
 
+        jMenuBuscarTeléfonoPorApellido.setText("Buscar Teléfono por Apellido");
+        jMenuBuscarTeléfonoPorApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuBuscarTeléfonoPorApellidoActionPerformed(evt);
+            }
+        });
+        jMenuDirectorio.add(jMenuBuscarTeléfonoPorApellido);
+
         jMenuBar1.add(jMenuDirectorio);
 
         jMenuCiudad.setText("Ciudad");
@@ -114,8 +123,13 @@ public class JframeNuevo extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenuCiudad);
 
-        jMenu4.setText("Salir");
-        jMenuBar1.add(jMenu4);
+        jMenuSalir.setText("Salir");
+        jMenuSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuSalirActionPerformed(evt);
+            }
+        });
+        jMenuBar1.add(jMenuSalir);
 
         setJMenuBar(jMenuBar1);
 
@@ -177,6 +191,16 @@ public class JframeNuevo extends javax.swing.JFrame {
         jDEscritorio.add(borrarCliente);
     }//GEN-LAST:event_ItemBorrarClienteActionPerformed
 
+    private void jMenuSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuSalirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuSalirActionPerformed
+
+    private void jMenuBuscarTeléfonoPorApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuBuscarTeléfonoPorApellidoActionPerformed
+        frm_BuscarTelefonoPorApellido f = new frm_BuscarTelefonoPorApellido();
+    jDEscritorio.add(f);
+    f.setVisible(true);
+    }//GEN-LAST:event_jMenuBuscarTeléfonoPorApellidoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -218,12 +242,13 @@ public class JframeNuevo extends javax.swing.JFrame {
     private javax.swing.JMenuItem ItemBorrarCliente;
     private javax.swing.JMenuItem ItemBuscarCliente;
     private javax.swing.JDesktopPane jDEscritorio;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuBuscarTeléfonoPorApellido;
     private javax.swing.JMenu jMenuCiudad;
     private javax.swing.JMenu jMenuCliente;
     private javax.swing.JMenu jMenuDirectorio;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenu jMenuSalir;
     // End of variables declaration//GEN-END:variables
 }
