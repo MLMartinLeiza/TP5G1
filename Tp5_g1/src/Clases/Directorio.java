@@ -61,9 +61,18 @@ public class Directorio {
     }
 
     //en base a una ciudad nos devuelve un ArrayList con los Contactos asociados a dicha ciudad.
-    public void buscarContactos() {
+    public  Contactos buscarContactoPorDNI(int dni){
+        // recorremos el mapa buscando un contacto q tenga el dni igual al ingresado 
+       for (Contactos c: informacion.values()){
+           if(c.getDni() == dni){
+               // si lo encuentra devolvemos el contacto
+               return c;
+           }
+       }
+       // si no retornamos a null 
+       return null;
 
-        //en base al número de teléfono elimina el contacto del directorio.   
+       
     }
 
     public static Set<Integer> TodosLosDni() {
@@ -74,10 +83,27 @@ public class Directorio {
         }
         return listaDni;
     }
+    // NO SABEMOS SI LO VAMOS A USAR
+    public static boolean borrarContacto(Long telefono) {
+       if(telefono== null)return false;
 
-    public TreeMap<Long, Contactos> borrarContacto(int dni) {
-        informacion.containsValue(dni);
-
-        return informacion;
+       // busca el telefono lo elimina si no lo encuentra devuelve false
+       
+       if(informacion.remove(telefono)!= null){
+           return true;
+       }else{
+           return false;
+       }
+    }
+    
+  
+    
+    public static Long BuscarTlefonoPorContacto(Contactos cont){
+        for(Map.Entry<Long, Contactos> entry : informacion.entrySet()){
+            if(entry.getValue().equals(cont)){
+                return entry.getKey();
+            }
+        }
+        return null;
     }
 }

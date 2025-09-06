@@ -3,6 +3,8 @@ import Clases.Contactos;
 import Clases.Directorio;
 import java.util.TreeMap;
 import javax.swing.DefaultListModel;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -18,15 +20,19 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form BorrarCliente
      */
+    DefaultTableModel elBarto = new DefaultTableModel ();
+    DefaultListModel<String> modeloLista = new DefaultListModel<>();
     
     public BorrarCliente() {
         initComponents();
-        DefaultListModel<String> modeloLista = new DefaultListModel<>();
+        
         for (Integer dni : Directorio.TodosLosDni()) {
             modeloLista.addElement(String.valueOf(dni));
         }
         jListDni.setModel(modeloLista);
        
+        titulos();
+        
     }
 
     /**
@@ -45,8 +51,8 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
         jTdni = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jListDni = new javax.swing.JList<>();
 
@@ -94,12 +100,17 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
         });
         jScrollPane2.setViewportView(jTable1);
 
-        jButton1.setText("Borrar");
-
-        jButton2.setText("Salir");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBEliminar.setText("Borrar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
+        jBSalir.setText("Salir");
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBSalirActionPerformed(evt);
             }
         });
 
@@ -137,9 +148,9 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
                                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 600, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGap(456, 456, 456)
-                                .addComponent(jButton1)
+                                .addComponent(jBEliminar)
                                 .addGap(18, 18, 18)
-                                .addComponent(jButton2)))))
+                                .addComponent(jBSalir)))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -153,8 +164,8 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton1)
-                            .addComponent(jButton2))
+                            .addComponent(jBEliminar)
+                            .addComponent(jBSalir))
                         .addGap(41, 41, 41))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -172,22 +183,101 @@ public class BorrarCliente extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTdniActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jListDniValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListDniValueChanged
         // TODO add your handling code here:
+     
+        //   CADA VEZ QUE SELECCIONAMOS UN ITEM LIMPIA 
+     // -------------->  /*elBarto.setRowCount(0);*/------------
+     
+     
+        // tenemos que retirar los datos para q sean cargados en la tabla
         
+        //creamos una variable de tipo int que guarde el valor del dni seleccionado en la lista
+          
+       
+       int dni = Integer.parseInt(jListDni.getSelectedValue());
+       jTdni.setText(String.valueOf(dni));
+       Contactos cell = new Directorio().buscarContactoPorDNI(dni);
+       // lo usamos para asegurar q encontraba el contacto 
+        if(cell==null){
+            JOptionPane.showMessageDialog(this, "No se encontro el  contacto con el dni");
+            return;
+        }
+        
+        
+        Long telefono = Directorio.BuscarTlefonoPorContacto(cell);
+    
+        String fono = String.valueOf(telefono);
+        
+        //Me aseguro q no se agregue dos veces el mismo contacto en la tabla 
+        boolean existe= false;
+        for(int i=0; i< elBarto.getRowCount();i++){
+            int dniTabla = (int)elBarto.getValueAt(i, 0);
+            if(dniTabla == cell.getDni()){
+                existe= true;
+                break;
+            }
+            
+            
+        }
+        if(!existe){
+        elBarto.addRow(new Object [] {cell.getDni(),cell.getApellido(),cell.getNombre(),cell.getDireccion(), cell.getCiudad(),fono});
+        }
+           
+        jTable1.setModel(elBarto);
+        
+      
         
         
     }//GEN-LAST:event_jListDniValueChanged
-    
-    
 
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        
+        
+        for(int i= elBarto.getRowCount()-1; i>=0; i--){
+            //como los numeros en la tabla se guardan como integer los parseo 
+            Number numero = (Number)elBarto.getValueAt(i, 0);
+            Long telefono = numero.longValue();
+         
+         // borramos ;ps va;pres desde edl tree map
+         
+         Directorio.borrarContacto(telefono);
+         // borramos fila de la tabla
+         elBarto.removeRow(i);
+            
+        }
+       
+        //mensaje
+       
+        JOptionPane.showMessageDialog(null, "Todos los contactos de la Tabla fueron eliminados");
+        
+     actualizarListaDNI();
+    }//GEN-LAST:event_jBEliminarActionPerformed
+        
+    private void titulos(){
+        elBarto.addColumn("dni");
+        elBarto.addColumn("apellido");
+        elBarto.addColumn("nombre");
+        elBarto.addColumn("direccion");
+        elBarto.addColumn("ciudad");
+        elBarto.addColumn("telefono");
+        jTable1.setModel(elBarto);
+    }
+    //--------------quiero actualizar luyegop de eliminar mi JList pero bno funciona
+    private void actualizarListaDNI(){
+        modeloLista.clear();
+        for(Integer dni: Directorio.TodosLosDni()){
+            modeloLista.addElement(String.valueOf(dni));
+            
+        }
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBSalir;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JList<String> jListDni;

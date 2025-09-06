@@ -18,6 +18,7 @@ public class JframeNuevo extends javax.swing.JFrame {
      * Creates new form JframeNuevo
      */
     
+    
     public static Set<String> ciudades = new HashSet<>();
     
     public JframeNuevo() {

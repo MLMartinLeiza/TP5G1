@@ -199,11 +199,15 @@ public class BuscarCliente extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jtTelefonoActionPerformed
 
     private void jList1ValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jList1ValueChanged
-        // TODO add your handling code here:
+        
+        // primero creamos una variable de tipo telefono para retirarla desde la tabla 
             Long telefono = Long.parseLong(jList1.getSelectedValue());
             String telefono2 = Long.toString(telefono);
             jtTelefono.setText(telefono2);
+            // con esta variable de tipo telefono retiraremos de un metodo q esta en directorio
+            
             Contactos cell = new Directorio().buscarContacto(telefono);
+            // retiramos informacion de ese contacto buscado por telefono
             jtDni.setText(String.valueOf(cell.getDni()));
             jtApellido.setText(cell.getApellido());
             jtNombre.setText(cell.getNombre());
